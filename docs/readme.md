@@ -1,4 +1,4 @@
 
-# Go Standard library
+# Go 标准库
 
-[stl](stl.md)
+[标准库](stl.md)
