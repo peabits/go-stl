@@ -1,3 +1,3 @@
 # go-stl
 
-[Golang Standard library](docs/readme.md)
+[Go 标准库](docs/readme.md)
