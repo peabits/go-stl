@@ -44,7 +44,7 @@ for {
 
 可以通过将 GODEBUG 环境变量（参见包运行时）的 netdns 值设置为 go 或 cgo 来覆盖解析器决策，如下所示：
 
-```go
+```bash
 export GODEBUG=netdns=go    # force pure Go resolver
 export GODEBUG=netdns=cgo   # force native resolver (cgo, win32)
 ```
@@ -550,18 +550,38 @@ type AddrError struct {
 ## Bugs
 
 - 在 JS 和 Windows 上，未实现 FileConn、FileListener 和 FilePacketConn 函数。
-- 在JS上，并没有实现与Interface相关的方法和功能。
+- 在JS上，并没有实现与 Interface 相关的方法和功能。
 - 在 AIX、DragonFly BSD、NetBSD、OpenBSD、Plan 9 和 Solaris 上，未实现接口的 MulticastAddrs 方法。
 - 在每个 POSIX 平台上，使用 ReadFrom 或 ReadFromIP 方法从“ip4”网络读取可能不会返回完整的 IPv4 数据包，包括其标头，即使有可用空间也是如此。即使在 Read 或 ReadMsgIP 可以返回完整数据包的情况下，也会发生这种情况。因此，如果接收完整数据包很重要，建议您不要使用这些方法。
 - Go 1 兼容性指南使我们无法更改这些方法的行为；请改用 Read 或 ReadMsgIP。
-- 在JS和Plan 9上，没有实现IPConn相关的方法和函数。
+- 在 JS 和 Plan 9 上，没有实现 IPConn 相关的方法和函数。
 - 在 Windows 上，未实现 IPConn 的 File 方法。
-- 在 DragonFly BSD 和 OpenBSD 上，侦听“tcp”和“udp”网络不会同时侦听 IPv4 和 IPv6 连接。这是因为 IPv4 流量不会路由到 IPv6 套接字 - 如果要支持两个地址系列，则需要两个单独的套接字。有关详细信息，请参阅 inet6(4)。
+- 在 DragonFly BSD 和 OpenBSD 上，侦 听“tcp” 和 “udp” 网络不会同时侦听 IPv4 和 IPv6 连接。这是因为 IPv4 流量不会路由到 IPv6 套接字 - 如果要支持两个地址系列，则需要两个单独的套接字。有关详细信息，请参阅 inet6(4)。
 - 在 Windows 上，syscall.RawConn 的 Write 方法不与运行时的网络轮询器集成。它不能等待连接变得可写，并且不遵守截止日期。如果用户提供的回调返回 false，Write 方法将立即失败。
 - 在 JS 和 Plan 9 上，syscall.RawConn 的 Control、Read 和 Write 方法没有实现。
 - 在 JS 和 Windows 上，未实现 TCPConn 和 TCPListener 的 File 方法。
-- 在Plan 9上，UDPConn的ReadMsgUDP和WriteMsgUDP方法没有实现。
+- 在 Plan 9 上，UDPConn 的 ReadMsgUDP 和 WriteMsgUDP 方法没有实现。
 - 在 Windows 上，未实现 UDPConn 的 File 方法。
-- 在JS上，没有实现UDPConn相关的方法和函数。
-- 在JS和Plan 9上，没有实现UnixConn和UnixListener相关的方法和函数。
-- 在 Windows 上，与 UnixConn 和 UnixListener 相关的方法和函数不适用于“unixgram”和“unixpacket”。
+- 在 JS 上，没有实现 UDPConn 相关的方法和函数。
+- 在 JS 和 Plan 9 上，没有实现 UnixConn 和 UnixListener 相关的方法和函数。
+- 在 Windows 上，与 UnixConn 和 UnixListener 相关的方法和函数不适用于 “unixgram” 和 “unixpacket”。
+
+## 目录
+
+- [http](net/http.md) 
+    - [cgi](net/http/cgi.md)
+    - [cookiejar](net/http/cookiejar.md)
+    - [fcgi](net/http/fcgi.md)
+    - [httptest](net/http/httptest.md)
+    - [httptrace](net/http/httptrace.md)
+    - [httputil](net/http/httputil.md)
+    - [pprof](net/http/pprof.md)
+- [mail](net/mail.md)
+- [netip](net/netip.md)
+- [rpc](net/rpc.md)
+    - [jsonrpc](net/rpc/jsonrpc.md)
+- [smtp](net/smtp.md)
+- [textproto](net/textproto.md)
+- [url](net/url.md)
+- internal
+    - [socktest](net/internal/socktest.md)
