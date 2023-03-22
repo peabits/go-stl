@@ -270,25 +270,82 @@ ErrProcessDone 指示进程已完成。
 ### func Chdir
 
 ```go
-
+func Chdir(dir string) error
 ```
+
+Chdir 将当前工作目录更改为指定目录。如果有错误，它将是 *PathError 类型。
 
 ### func Chmod
 
 ```go
+func Chmod(name string, mode FileMode) error
+```
 
+Chmod 将指定文件的模式更改为 mode。如果文件是符号链接，它会更改链接目标的模式。如果有错误，它将是 *PathError 类型。
+
+根据操作系统的不同，使用模式位的不同子集。
+
+在 Unix 上，使用模式的权限位 ModeSetuid、ModeSetgid 和 ModeSticky。
+
+在 Windows 上，只使用模式的 0200 位（所有者可写）；它控制是设置还是清除文件的只读属性。其他位当前未使用。为了与 Go 1.12 及更早版本兼容，请使用非零模式。只读文件使用模式 0400，可读+可写文件使用模式 0600。
+
+在 Plan 9 中，使用了模式的权限位 ModeAppend、ModeExclusive 和 ModeTemporary。
+
+Example
+
+```go
+package main
+
+import (
+    "log"
+    "os"
+)
+
+func main() {
+    if err := os.Chmod("some-filename", 0644); err != nil {
+        log.Fatal(err)
+    }
+}
 ```
 
 ### func Chown
 
 ```go
-
+func Chown(name string, uid, gid int) error
 ```
+
+chown 更改指定文件的数字 uid 和 gid。如果文件是符号链接，它会更改链接目标的 uid 和 gid。 -1 的 uid 或 gid 表示不更改该值。如果有错误，它将是 *PathError 类型。
+
+在 Windows 或 Plan 9 上，Chown 总是返回 syscall.EWINDOWS 或 EPLAN9 错误，包含在 *PathError 中。
 
 ### func Chtimes
 
 ```go
+func Chtimes(name string, atime time.Time, mtime time.Time) error
+```
 
+Chtimes 更改命名文件的访问和修改时间，类似于 Unix utime() 或 utimes() 函数。
+
+底层文件系统可能会将值截断或四舍五入为不太精确的时间单位。如果有错误，它将是 *PathError 类型。
+
+Example
+
+```go
+package main
+
+import (
+    "log"
+    "os"
+    "time"
+)
+
+func main() {
+    mtime := time.Date(2006, time.February, 1, 3, 4, 5, 0, time.UTC)
+    atime := time.Date(2007, time.March, 2, 4, 5, 6, 0, time.UTC)
+    if err := os.Chtimes("some-filename", atime, mtime); err != nil {
+        log.Fatal(err)
+    }
+}
 ```
 
 ### func Clearenv
