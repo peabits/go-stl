@@ -59,23 +59,262 @@ export GODEBUG=netdns=cgo   # force native resolver (cgo, win32)
 
 ## 索引
 
-- [Contants](#constants)
-- [Variables](#variables)
-- [Functions](#functions)
-    - [func JoinHostPort(host, port string) string]()
-    - [func LookupAddr(addr string) (names []string, err error)]()
-    - [func LookupCNAME(host string) (cname string, err error)]()
-    - [func LookupHost(host string) (addrs []string, err error)]()
-    - [func LookupPort(network, service string) (port int, err error)]()
-    - [func LookupTXT(name string) ([]string, error)]()
-    - [func ParseCIDR(s string) (IP, *IPNet, error)]()
-    - [func Pipe() (Conn, Conn)]()
-    - [func SplitHostPort(hostport string) (host, port string, err error)]()
-- [Types](#types) 
+- [Contants](#常量)
+- [Variables](#变量)
+- [Functions](#函数)
+    - [func JoinHostPort(host, port string) string](#func-joinhostport)
+    - [func LookupAddr(addr string) (names []string, err error)](#func-lookupaddr)
+    - [func LookupCNAME(host string) (cname string, err error)](#func-lookupcname)
+    - [func LookupHost(host string) (addrs []string, err error)](#func-lookuphost)
+    - [func LookupPort(network, service string) (port int, err error)](#func-lookupport)
+    - [func LookupTXT(name string) ([]string, error)](#func-lookuptxt)
+    - [func ParseCIDR(s string) (IP, *IPNet, error)](#func-parsecidr)
+    - [func Pipe() (Conn, Conn)](#func-pipe)
+    - [func SplitHostPort(hostport string) (host, port string, err error)](#func-splithostport)
+- [Types](#类型) 
     - [type Addr]()
         - [func InterfaceAddrs()([]Addr, error)]()
     - [type AddrError]()
-## Constants
+        - [func (e *AddrError) Error() string]()
+        - [func (e *AddrError) Temporary() bool]()
+        - [func (e *AddrError) Timeout() bool]()
+    - [type Buffers]()
+        - []()
+        - []()
+    - [type Conn]()
+        - []()
+        - []()
+        - []()
+    - [type DNSConfigError]()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type DNSError]()
+        - []()
+        - []()
+        - []()
+    - [type Dialer]()
+        - []()
+        - []()
+    - [type Error]()
+    - [type Flags]()
+        - []()
+    - [type HardwareAddr]()
+        - []()
+        - []()
+    - [type IP]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type IPAddr]()
+        - []()
+        - []()
+        - []()
+    - [type IPConn]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type IPMask]()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type IPNet]()
+        - []()
+        - []()
+        - []()
+    - [type Interface]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type InvalidAddrError]()
+        - []()
+        - []()
+        - []()
+    - [type ListenConfig]()
+        - []()
+        - []()
+    - [type Listener]()
+        - []()
+        - []()
+    - [type MX]()
+        - []()
+    - [type NS]()
+        - []()
+    - [type OpError]()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type PacketConn]()
+        - []()
+        - []()
+    - [type ParseError]()
+        - []()
+        - []()
+        - []()
+    - [type Resolver]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type SRV]()
+        - []()
+    - [type TCPAddr]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type TCPConn]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type TCPListener]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type UDPAddr]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type UDPConn]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type UnixAddr]()
+        - []()
+        - []()
+        - []()
+    - [type UnixConn]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type UnixListener]()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+        - []()
+    - [type UnknownNetworkError]()
+        - []()
+        - []()
+        - []()
+    - [Bugs]()
+
+## 常量
 
 IP 地址长度（字节）。
 
@@ -86,9 +325,9 @@ const (
 )
 ```
 
-## Variables
+## 变量
 
-众所周知的 IPv4 地址
+熟知的 IPv4 地址
 
 ```go
 var (
@@ -99,7 +338,7 @@ var (
 )
 ```
 
-众所周知的 IPv6 地址
+熟知的 IPv6 地址
 
 ```go
 var (
@@ -132,9 +371,136 @@ var (
 )
 ```
 
-## Functions
+## 函数
 
-## Types
+### func JoinHostPort
+
+```go
+func JoinHostPort(host, port string) string
+```
+
+JoinHostPort 将主机和端口组合成 “host:port” 形式的网络地址。如果 host 包含冒号，如在文字 IPv6 地址中找到的那样，则 JoinHostPort 返回 “[host]:port”。
+
+有关主机和端口参数的说明，请参见 [func Dial](#func-dial)。
+
+### func LookupAddr
+
+```go
+func LookupAddr(addr string) (names []string, err error)
+```
+
+LookupAddr 对给定地址执行反向查找，返回映射到该地址的名称列表。
+
+返回的名称被验证为格式正确的表示格式域名。如果响应包含无效名称，则这些记录将被过滤掉，并且将与剩余结果（如果有）一起返回错误。
+
+使用宿主 C 库解析器时，最多返回一个结果。要绕过主机解析器，请使用自定义解析器。
+
+LookupAddr 内部使用 context.Background；要指定上下文，请使用 Resolver.LookupAddr。
+
+### func LookupCNAME
+
+```go
+func LookupCNAME(host string) (cname string, err error)
+```
+
+LookupCNAME 返回给定主机的规范名称。不关心规范名称的调用者可以直接调用 LookupHost 或 LookupIP；两者都负责将规范名称解析为查找的一部分。
+
+规范名称是跟随零个或多个 CNAME 记录后的最终名称。如果主机不包含 DNS“CNAME”记录，只要主机解析为地址记录，LookupCNAME 就不会返回错误。
+
+返回的规范名称被验证为格式正确的表示格式域名。
+
+LookupCNAME 在内部使用 context.Background；要指定上下文，请使用 Resolver.LookupCNAME。
+
+### func LookupHost
+
+```go
+func LookupHost(host string) (addrs []string, err error)
+```
+
+LookupHost 使用本地解析器查找给定的主机。它返回该主机地址的一部分。
+
+LookupHost 内部使用 context.Background；要指定上下文，请使用 Resolver.LookupHost。
+
+### func LookupPort
+
+```go
+func LookupPort(network, service string) (port int, err error)
+```
+
+LookupPort 查找给定网络和服务的端口。
+
+LookupPort 内部使用 context.Background；要指定上下文，请使用 Resolver.LookupPort。
+
+### func LookupTXT
+
+```go
+func LookupTXT(name string) ([]string, error)
+```
+
+LookupTXT 返回给定域名的 DNS TXT 记录。
+
+LookupTXT 内部使用 context.Background；要指定上下文，请使用 Resolver.LookupTXT。
+
+### func ParseCIDR
+
+```go
+func ParseCIDR(s string) (IP, *IPNet, error)
+```
+
+ParseCIDR 将 s 解析为 CIDR 表示法 IP 地址和前缀长度，如“192.0.2.0/24”或“2001:db8::/32”，如 RFC 4632 和 RFC 4291 中所定义。
+
+它返回 IP 地址以及 IP 和前缀长度隐含的网络。例如，ParseCIDR("192.0.2.1/24") 返回 IP 地址 192.0.2.1 和网络 192.0.2.0/24。
+
+Example
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"net"
+)
+
+func main() {
+	ipv4Addr, ipv4Net, err := net.ParseCIDR("192.0.2.1/24")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(ipv4Addr)
+	fmt.Println(ipv4Net)
+
+	ipv6Addr, ipv6Net, err := net.ParseCIDR("2001:db8:a0b:12f0::1/32")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(ipv6Addr)
+	fmt.Println(ipv6Net)
+
+}
+```
+
+### func Pipe
+
+```go
+func Pipe() (Conn, Conn)
+```
+
+Pipe 创建一个同步的、内存中的、全双工的网络连接；两端都实现了Conn接口。一端的读取与另一端的写入匹配，直接在两者之间复制数据；没有内部缓冲。
+
+### func SplitHostPort
+
+```go
+func SplitHostPort(hostport string) (host, port string, err error)
+```
+
+SplitHostPort 将“host:port”、“host%zone:port”、“[host]:port”或“[host%zone]:port”形式的网络地址拆分为 host 或 host%zone 和端口。
+
+hostport 中的文字 IPv6 地址必须括在方括号中，如 “[::1]:80”、“[::1%lo0]:80”。
+
+有关 hostport 参数以及主机和端口结果的说明，请参见 [func Dial](#func-dial)。
+
+## 类型
 
 ### type Addr
 
@@ -181,3 +547,21 @@ type AddrError struct {
 ### func (*Buffers) WriteTo
 
 
+## Bugs
+
+- 在 JS 和 Windows 上，未实现 FileConn、FileListener 和 FilePacketConn 函数。
+- 在JS上，并没有实现与Interface相关的方法和功能。
+- 在 AIX、DragonFly BSD、NetBSD、OpenBSD、Plan 9 和 Solaris 上，未实现接口的 MulticastAddrs 方法。
+- 在每个 POSIX 平台上，使用 ReadFrom 或 ReadFromIP 方法从“ip4”网络读取可能不会返回完整的 IPv4 数据包，包括其标头，即使有可用空间也是如此。即使在 Read 或 ReadMsgIP 可以返回完整数据包的情况下，也会发生这种情况。因此，如果接收完整数据包很重要，建议您不要使用这些方法。
+- Go 1 兼容性指南使我们无法更改这些方法的行为；请改用 Read 或 ReadMsgIP。
+- 在JS和Plan 9上，没有实现IPConn相关的方法和函数。
+- 在 Windows 上，未实现 IPConn 的 File 方法。
+- 在 DragonFly BSD 和 OpenBSD 上，侦听“tcp”和“udp”网络不会同时侦听 IPv4 和 IPv6 连接。这是因为 IPv4 流量不会路由到 IPv6 套接字 - 如果要支持两个地址系列，则需要两个单独的套接字。有关详细信息，请参阅 inet6(4)。
+- 在 Windows 上，syscall.RawConn 的 Write 方法不与运行时的网络轮询器集成。它不能等待连接变得可写，并且不遵守截止日期。如果用户提供的回调返回 false，Write 方法将立即失败。
+- 在 JS 和 Plan 9 上，syscall.RawConn 的 Control、Read 和 Write 方法没有实现。
+- 在 JS 和 Windows 上，未实现 TCPConn 和 TCPListener 的 File 方法。
+- 在Plan 9上，UDPConn的ReadMsgUDP和WriteMsgUDP方法没有实现。
+- 在 Windows 上，未实现 UDPConn 的 File 方法。
+- 在JS上，没有实现UDPConn相关的方法和函数。
+- 在JS和Plan 9上，没有实现UnixConn和UnixListener相关的方法和函数。
+- 在 Windows 上，与 UnixConn 和 UnixListener 相关的方法和函数不适用于“unixgram”和“unixpacket”。
