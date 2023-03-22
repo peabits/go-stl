@@ -37,9 +37,9 @@ fmt.Printf("read %d bytes: %q\n", count, data[:count])
 
 ## 索引
 
-- [Constants](#constants)
-- [Variables](#variables)
-- [Functions](#functions)
+- [Constants](#常量)
+- [Variables](#变量)
+- [Functions](#函数)
     - [func Chdir(dir string) error](#func-chdir)
     - [func Chmod(name string, mode FileMode) error](#func-chmod)
     - [func Chown(name string, uid, gid int) error](#func-chown)
@@ -90,7 +90,7 @@ fmt.Printf("read %d bytes: %q\n", count, data[:count])
     - [func UserConfigDir() (string, error)](#func-userconfigdir)
     - [func UserHomeDir() (string, error)](#func-userhomedir)
     - [func WriteFile(name string, data []byte, perm FileMode) error](#func-writefile)
-- [Types](#types)
+- [Types](#类型)
     - [type DirEntry](#type-direntry)
         - [func ReadDir(name string) ([]DirEntry, error)]()
     - [type File](#type-file)
@@ -154,7 +154,7 @@ fmt.Printf("read %d bytes: %q\n", count, data[:count])
         - [func (e *SyscallError) Timeout() bool]()
         - [func (e *SyscallError) Unwrap() error]()
 
-## Constants
+## 常量
 
 ```go
 const (
@@ -219,7 +219,7 @@ const (
 
 定义的文件模式位是 FileMode 的最高有效位。九个最低有效位是标准的 Unix rwxrwxrwx 权限。这些位的值应被视为公共 API 的一部分，并可用于有线协议或磁盘表示：它们不得更改，但可能会添加新位。
 
-## Variables
+## 变量
 
 ```go
 var (
@@ -265,7 +265,7 @@ var ErrProcessDone = errors.New("os: process already finished")
 
 ErrProcessDone 指示进程已完成。
 
-## Functions
+## 函数
 
 ### func Chdir
 
@@ -567,7 +567,7 @@ ErrProcessDone 指示进程已完成。
 
 ```
 
-## Types
+## 类型
 
 ### type DirEntry
 
